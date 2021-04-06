@@ -5,10 +5,22 @@
     "emitDecoratorMetadata": true,
     "removeComments": false,
     "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es2016"
+    "target": "es2016",
+    "baseUrl": "",
+    "paths": {
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@windows/*": [
+        "windows/*"
+      ]
+    }
   }
 }

@@ -1,8 +1,8 @@
 import {Logger} from '../core/logger/logger-lindo';
 import {Application} from '../application';
 import {UpdateWindow} from '../windows/update-window';
-import {Versions} from './versions.interface';
 import {ipcMain} from 'electron';
+import {Versions} from "@interfaces/versions.interface";
 
 const settings = require('electron-settings');
 

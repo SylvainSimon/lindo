@@ -1,4 +1,4 @@
-import {UpdateInformations} from '../update/update-informations.interface';
+import {UpdateInformations} from '@interfaces/update-informations.interface';
 import axios from 'axios';
 
 const settings = require('electron-settings');

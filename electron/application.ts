@@ -15,7 +15,6 @@ export class Application {
     public static version: string;
     public static remoteBuildVersion: string;
     public static remoteAppVersion: string;
-    public static canAddWindow: boolean = false;
 
     public static skipAuthentication: boolean = false;
     public static isAuthenticated: boolean = false;
@@ -33,7 +32,6 @@ export class Application {
             this.remoteAppVersion = versions.appVersion;
 
             Logger.info("[APPLICATION] Starting..");
-            this.canAddWindow = true;
             this.addWindow();
 
         }).catch((error: any) => {
@@ -71,17 +69,14 @@ export class Application {
             });
         });
 
-        app.on('second-instance', (event, commandLine, workingDirectory) => {
-            if (this.canAddWindow) this.addWindow();
-        });
-
         app.setAppUserModelId('com.lindo.app');
-
     }
 
     public static addWindow(): void {
+
         let gWindow = new MainWindow(this);
         gWindow.run();
+
         this.mainWindows.push(gWindow);
     }
 }

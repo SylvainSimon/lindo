@@ -2,10 +2,8 @@ import { Api } from '../core/api';
 import { Logger } from '../core/logger/logger-lindo';
 import { UpdateApp } from './update-app';
 import { UpdateGame } from './update-game';
-import { UpdateInformations } from './update-informations.interface';
-import { Versions } from './versions.interface';
-
-const settings = require('electron-settings');
+import { UpdateInformations } from '@interfaces/update-informations.interface';
+import { Versions } from '@interfaces/versions.interface';
 
 export class UpdateAll {
 
