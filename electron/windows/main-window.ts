@@ -102,7 +102,8 @@ export class MainWindow {
 
     public run(): void {
 
-        this.win.loadURL(`file://${Application.appPath}/dist/app/index.html`);
+        void this.win.loadURL(`file://${Application.appPath}/dist/app/index.html`);
+
         this.win.once('ready-to-show', () => {
             this.win.show()
         })

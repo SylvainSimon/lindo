@@ -18,7 +18,7 @@ export class UpdateGame {
 
             this.updateWindow = UpdateWindow.createWindow();
 
-            this.updateWindow.loadURL(`file://${Application.appPath}/dist/app/index.html#/official-game-update/` + encodeURIComponent(destinationPath));
+            void this.updateWindow.loadURL(`file://${Application.appPath}/dist/app/index.html#/official-game-update/` + encodeURIComponent(destinationPath));
 
             ipcMain.on('update-finished', (event, args) => {
                 Logger.info("[UPDATE] Game update finished.");
