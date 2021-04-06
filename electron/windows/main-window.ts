@@ -1,11 +1,10 @@
-import { Logger } from '../core/logger/logger-lindo';
-import { Application } from '../application';
-import { GameMenuTemplate } from '../core/game-menu.template';
-import { ShortCuts } from '../core/shortcuts';
-import { UserAgent } from '../core/user-agent';
-import { app, Menu, ipcMain } from 'electron';
+import {Logger} from '../core/logger/logger-lindo';
+import {Application} from '../application';
+import {GameMenuTemplate} from '../core/game-menu.template';
+import {ShortCuts} from '../core/shortcuts';
+import {UserAgent} from '../core/user-agent';
+import {app, Menu, ipcMain} from 'electron';
 
-const { webContents } = require('electron')
 const settings = require('electron-settings');
 const electron = require('electron');
 
@@ -19,7 +18,6 @@ export class MainWindow {
 
     private application: Application;
     private menu: Electron.Menu;
-    private events: Array<any> = [];
 
     constructor(application: Application) {
 
@@ -114,8 +112,8 @@ export class MainWindow {
         this.shortCuts.enable();
 
         //On bloque les ouverture d'url
-        this.win.webContents.on("new-window", (event: any, url: string) => {
-            event.preventDefault();
+        this.win.webContents.setWindowOpenHandler(() => {
+            return {action: 'deny'};
         });
     }
 }

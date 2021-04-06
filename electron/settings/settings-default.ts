@@ -1,4 +1,4 @@
-import { SettingsInterface } from './settings.interface';
+import {SettingsInterface} from './settings.interface';
 
 export const SettingsDefault: SettingsInterface = {
     language: "en",

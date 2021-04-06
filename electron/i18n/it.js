@@ -53,7 +53,7 @@ module.exports = {
             "message": "La cache è stata pulita sulle finestre attualmente aperte"
         }
     },
-    "uncaught-exception":{
+    "uncaught-exception": {
         "title": "C'è stato un errore",
         "message": "Si è verificato un errore imprevisto nel programma. \nLe tue impostazioni sono state ripristinate.",
         "close": "Chiudi l'applicazione"

@@ -53,7 +53,7 @@ module.exports = {
             "message": "Cache has been cleared on currently opened window"
         }
     },
-    "uncaught-exception":{
+    "uncaught-exception": {
         "title": "An error has occurred",
         "message": "An unexpected error has occurred in the program. \nYour settings have been reset.",
         "close": "Close the application"

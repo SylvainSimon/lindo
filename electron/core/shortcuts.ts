@@ -1,6 +1,6 @@
-import { Logger } from './logger/logger-lindo';
+import {Logger} from './logger/logger-lindo';
 
-const electronLocalshortcut = require('electron-localshortcut');
+const electronLocalShortcut = require('electron-localshortcut');
 const settings = require('electron-settings');
 const async = require('async');
 
@@ -8,26 +8,27 @@ const async = require('async');
 
 export class ShortCuts {
 
-    private win: Electron.BrowserWindow;
-    private isBinded: boolean;
+    private readonly win: Electron.BrowserWindow;
+    private readonly isBound: boolean;
 
     constructor(win: Electron.BrowserWindow) {
         this.win = win;
-        this.isBinded = false;
+        this.isBound = false;
     }
 
     public bindAll(): void {
 
         let errorConsoleFunction = console.error;
-        console.error = function() {}
+        console.error = function () {
+        }
 
         void async.forEachOf(settings.getSync('option.shortcuts.no_emu.tabs'), (shortcut: string, index: number) => {
             if (shortcut) {
-                try{
-                    electronLocalshortcut.register(this.win, ShortCuts.convert(shortcut), () => {
+                try {
+                    electronLocalShortcut.register(this.win, ShortCuts.convert(shortcut), () => {
                         this.win.webContents.send('switch-tab', index);
                     });
-                }catch(e){
+                } catch (e) {
                     //console.log(e);
                 }
             }
@@ -37,22 +38,22 @@ export class ShortCuts {
     }
 
     public reload(): void {
-        electronLocalshortcut.unregisterAll(this.win);
+        electronLocalShortcut.unregisterAll(this.win);
         this.bindAll();
         Logger.info('emit->reload-shortcuts');
         this.win.webContents.send('reload-shortcuts');
     }
 
     public enable(): void {
-        if (!this.isBinded) {
+        if (!this.isBound) {
             this.bindAll()
         } else {
-            electronLocalshortcut.enableAll(this.win);
+            electronLocalShortcut.enableAll(this.win);
         }
     }
 
     public disable(): void {
-        electronLocalshortcut.disableAll(this.win);
+        electronLocalShortcut.disableAll(this.win);
     }
 
     public static convert(shortcut: string): string {

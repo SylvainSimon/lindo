@@ -33,7 +33,7 @@ module.exports = {
         },
         "infos": {
             "title": "?",
-			"changelog": "Informacje o wydaniu",
+            "changelog": "Informacje o wydaniu",
             "console": "Konsola deweloperska",
             "about": "O nas..."
         }
@@ -53,7 +53,7 @@ module.exports = {
             "message": "Pamięć podręczna została wyczyszczcona na obecnie otwartych oknach"
         }
     },
-    "uncaught-exception":{
+    "uncaught-exception": {
         "title": "Wystąpił błąd",
         "message": "Wystąpił nieoczekiwany błąd w programie. \nTwoje ustawienia zostały zresetowane.",
         "close": "Zamknij aplikację"

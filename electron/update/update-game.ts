@@ -1,8 +1,8 @@
 import {Logger} from '../core/logger/logger-lindo';
 import {Application} from '../application';
-import {UpdateWindow} from '../windows/update-window';
 import {ipcMain} from 'electron';
 import {Versions} from "@interfaces/versions.interface";
+import {UpdateWindow} from "../windows/update-window";
 
 const settings = require('electron-settings');
 
@@ -11,7 +11,7 @@ export class UpdateGame {
     public static updateWindow: Electron.BrowserWindow;
 
     public static officialUpdate(): Promise<Versions> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             Logger.info("[UPDATE] Game update started..");
 
             let destinationPath = Application.userDataPath + '/game';

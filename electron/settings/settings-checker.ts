@@ -1,6 +1,6 @@
-import { Logger } from '../core/logger/logger-lindo';
-import { SettingsDefault } from './settings-default';
-import { SettingsInterface } from './settings.interface';
+import {Logger} from '../core/logger/logger-lindo';
+import {SettingsDefault} from './settings-default';
+import {SettingsInterface} from './settings.interface';
 import * as macAddress from 'macaddress';
 
 const settings = require('electron-settings');
@@ -10,7 +10,7 @@ export function checkSettings() {
     Logger.info("[SETTING] Checking settings integrity..");
 
     let sett: SettingsInterface = settings.getSync();
-    
+
     if (sett.option === undefined) {
         return false;
     }
@@ -25,8 +25,7 @@ export function checkSettings() {
                     settings[id] = defaultSettings[id];
                     pass = false;
                 }
-            }
-            else {
+            } else {
                 if (typeof defaultSettings[id] !== typeof settings[id] && defaultSettings[id] !== null) {
                     Logger.info('Error with setting ' + '.'.repeat(depth) + id);
                     Logger.info('-> Current value:  ' + ' '.repeat(depth) + settings[id]);
@@ -43,6 +42,7 @@ export function checkSettings() {
         }
         return pass;
     }
+
     let ok = checkRecursive(sett, SettingsDefault, 0);
     if (!ok) {
         Logger.info('Replacing settings above by defaults');
@@ -62,10 +62,10 @@ export function checkSettings() {
 
     if (!settings.getSync('macAddress')) {
         macAddress.one((err, addr) => {
-            if(err || !addr){
-                settings.setSync('macAddress',  Math.random().toString());
+            if (err || !addr) {
+                settings.setSync('macAddress', Math.random().toString());
                 Logger.warn("[SETTING] Unable to retrieve the mac address");
-            }else{
+            } else {
                 settings.setSync('macAddress', Buffer.from(addr).toString('base64'));
             }
         });

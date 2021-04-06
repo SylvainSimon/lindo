@@ -1,6 +1,6 @@
-import { Application } from '../application';
-import { ShortCuts } from './shortcuts';
-import { app } from 'electron';
+import {Application} from '../application';
+import {ShortCuts} from './shortcuts';
+import {app} from 'electron';
 
 const settings = require('electron-settings');
 const i18n = require('node-translate');
@@ -16,7 +16,7 @@ export class GameMenuTemplate {
                     {
                         label: i18n.t('game-menu.file.new-window'),
                         accelerator: ShortCuts.convert(settings.getSync('option.shortcuts.no_emu.new_window')),
-                        click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
+                        click() {
                             Application.addWindow();
                         }
                     },

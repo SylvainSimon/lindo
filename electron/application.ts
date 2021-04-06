@@ -1,7 +1,7 @@
 import {Logger} from './core/logger/logger-lindo';
 import {UpdateAll} from './update/update-all';
-import {MainWindow} from './windows/main-window';
 import {app, BrowserWindow, dialog, ipcMain} from 'electron';
+import {MainWindow} from "./windows/main-window";
 
 const settings = require('electron-settings');
 const pkg = require(`${app.getAppPath()}/package.json`);
@@ -36,13 +36,13 @@ export class Application {
 
         }).catch((error: any) => {
 
-            Logger.error('Error occured on update process : ');
+            Logger.error('Error occurred on update process : ');
             Logger.error(error);
 
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
                 type: 'error',
                 title: 'Error',
-                message: "Error occured on update process.",
+                message: "Error occurred on update process.",
                 buttons: ['Close']
             }).then(() => {
                 app.exit();
@@ -50,21 +50,21 @@ export class Application {
         });
 
         //Renvoi de l'événement à toute les fenêtres
-        ipcMain.on('auto-group-reset-counter', (event, arg) => {
-            this.mainWindows.forEach((gWindow, index) => {
+        ipcMain.on('auto-group-reset-counter', () => {
+            this.mainWindows.forEach((gWindow) => {
                 gWindow.win.webContents.send('auto-group-reset-counter');
             });
         });
 
         ipcMain.on('auto-group-push-path', (event, arg) => {
             arg.unshift('auto-group-push-path');
-            this.mainWindows.forEach((gWindow, index) => {
+            this.mainWindows.forEach((gWindow) => {
                 gWindow.win.webContents.send.apply(gWindow.win.webContents, arg);
             });
         });
 
-        ipcMain.on('window-ready', (event, arg) => {
-            this.mainWindows.forEach((gWindow, index) => {
+        ipcMain.on('window-ready', () => {
+            this.mainWindows.forEach((gWindow) => {
                 gWindow.win.webContents.send('window-ready');
             });
         });

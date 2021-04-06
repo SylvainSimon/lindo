@@ -1,9 +1,9 @@
-import { Api } from '../core/api';
-import { Logger } from '../core/logger/logger-lindo';
-import { UpdateApp } from './update-app';
-import { UpdateGame } from './update-game';
-import { UpdateInformations } from '@interfaces/update-informations.interface';
-import { Versions } from '@interfaces/versions.interface';
+import {Api} from '../core/api';
+import {Logger} from '../core/logger/logger-lindo';
+import {UpdateApp} from './update-app';
+import {UpdateGame} from './update-game';
+import {UpdateInformations} from '@interfaces/update-informations.interface';
+import {Versions} from '@interfaces/versions.interface';
 
 export class UpdateAll {
 
@@ -19,21 +19,23 @@ export class UpdateAll {
                     return UpdateApp.update(response);
                 } else {
                     Logger.info("[UPDATE] Application is up to date.");
-                    return new Promise((resolve) => { resolve(response) });
+                    return new Promise((resolve) => {
+                        resolve(response)
+                    });
                 }
 
             })
-            .catch(() => {
-                Logger.warn("[UPDATE] Skipping app check");
-            })
-            .then(() => {
-                UpdateGame.officialUpdate().then((versions) => {
-                    resolve(versions);
+                .catch(() => {
+                    Logger.warn("[UPDATE] Skipping app check");
                 })
-                .catch(err => {
-                    reject(err);
+                .then(() => {
+                    UpdateGame.officialUpdate().then((versions) => {
+                        resolve(versions);
+                    })
+                        .catch(err => {
+                            reject(err);
+                        })
                 })
-            })
 
         });
 

@@ -3,7 +3,7 @@ import {Logger} from '../core/logger/logger-lindo';
 import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
-import {app, ipcMain, dialog, BrowserWindow} from 'electron';
+import {app, BrowserWindow, dialog, ipcMain} from 'electron';
 import * as rimraf from "rimraf";
 
 const settings = require('electron-settings');
@@ -12,7 +12,8 @@ const i18n = require('node-translate');
 export class Settings {
 
     public static init(): void {
-        (checkSettings()) ? null : this.resetSettings();
+
+        if (!checkSettings()) this.resetSettings();
 
         if (!settings.getSync('language')) {
             let local = app.getLocale();
@@ -44,23 +45,22 @@ export class Settings {
         }).setLocale(settings.getSync('language'));
 
         ipcMain.on('read-settings', (event, args) => {
-            let value = settings.getSync(args[0]);
-            event.returnValue = value;
+            event.returnValue = settings.getSync(args[0]);
         });
 
         ipcMain.on('write-settings', (event, args) => {
             event.returnValue = settings.setSync(args[0], args[1]);
         });
 
-        ipcMain.on('reset-game', (event, args) => {
+        ipcMain.on('reset-game', () => {
             this.resetGame();
         });
 
-        ipcMain.on('clear-cache', (event, args) => {
+        ipcMain.on('clear-cache', () => {
             this.clearCache();
         });
 
-        ipcMain.on('change-shortcuts', (event, args) => {
+        ipcMain.on('change-shortcuts', () => {
             this.reloadShortcut();
         });
 
@@ -122,7 +122,7 @@ export class Settings {
 
     public static clearCache() {
         let promises = [];
-        promises.push(new Promise((resolve, reject) => {
+        promises.push(new Promise((resolve) => {
             Application.mainWindows.forEach((mainWindow) => {
                 mainWindow.win.webContents.session.clearCache().then(() => {
                     resolve();

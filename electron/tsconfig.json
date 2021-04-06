@@ -17,9 +17,6 @@
     "paths": {
       "@interfaces/*": [
         "interfaces/*"
-      ],
-      "@windows/*": [
-        "windows/*"
       ]
     }
   }

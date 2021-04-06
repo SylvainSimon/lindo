@@ -53,7 +53,7 @@ module.exports = {
             "message": "Şu anda açık olan pencerelerde önbellek temizlendi"
         }
     },
-    "uncaught-exception":{
+    "uncaught-exception": {
         "title": "Bir hata oluştu",
         "message": "Programda beklenmeyen bir hata oluştu. \nAyarlarınız sıfırlandı",
         "close": "Uygulamayı kapat"

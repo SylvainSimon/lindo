@@ -33,8 +33,12 @@ export class UpdateWindow {
             }
         });
 
-        window.once('ready-to-show', () => { window.show() })
-        window.on('closed', () => { window = null; });
+        window.once('ready-to-show', () => {
+            window.show()
+        })
+        window.on('closed', () => {
+            window = null;
+        });
 
         return window;
     }

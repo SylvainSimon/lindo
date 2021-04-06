@@ -53,7 +53,7 @@ module.exports = {
             "message": "Le cache des fenêtres ouvertes a été vidé avec succès"
         }
     },
-    "uncaught-exception":{
+    "uncaught-exception": {
         "title": "Une erreur s'est produite",
         "message": "Une erreur non prévu s'est produite dans le programme. \nVos paramètres ont été réinitialisés.",
         "close": "Fermer l'application"

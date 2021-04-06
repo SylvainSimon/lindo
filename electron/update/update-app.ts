@@ -17,7 +17,7 @@ export class UpdateApp {
 
     public static update(response: UpdateInformations): Promise<UpdateInformations> {
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
             switch (process.platform) {
                 case 'darwin':
@@ -33,7 +33,7 @@ export class UpdateApp {
 
     public static openUpdateInfo(response: UpdateInformations): Promise<UpdateInformations> {
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
             let message = i18n.t('updater.new-update.default');
             let buttons: Array<string> = [i18n.t('updater.new-update.go-site')];
@@ -62,7 +62,7 @@ export class UpdateApp {
                     app.exit();
 
                 } else {
-                    Logger.warn("[UPDATE] App update ingored.");
+                    Logger.warn("[UPDATE] App update ignored.");
                     resolve();
                 }
             });

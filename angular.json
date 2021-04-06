@@ -17,7 +17,8 @@
             "main": "src/main.ts",
             "allowedCommonJsDependencies": [
               "axios",
-              "js-beautify"
+              "js-beautify",
+              "axios-retry"
             ],
             "tsConfig": "src/tsconfig.json",
             "polyfills": "src/polyfills.ts",

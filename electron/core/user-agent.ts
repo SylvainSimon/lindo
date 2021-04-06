@@ -2,7 +2,7 @@ const settings = require('electron-settings');
 
 export class UserAgent {
 
-    private subSeed: number;
+    private readonly subSeed: number;
     private userAgentString: string;
 
     constructor(
@@ -12,7 +12,7 @@ export class UserAgent {
         this.generateUserAgentString();
     }
 
-    private _phones:String[] = [
+    private _phones: String[] = [
         "Linux; Android 6.0.1; SM-G900F Build/MMB29M",
         "Linux; Android 7.0; SAMSUNG-SM-G891A Build/NRD90M",
         "Linux; Android 7.0; SM-G930S Build/NRD90M",
@@ -41,7 +41,7 @@ export class UserAgent {
         "Linux; Android 7.0; LG-H840 Build/NRD90U"
     ];
 
-    private _tablets:String[] = [
+    private _tablets: String[] = [
         "Linux; Android 6.0.1; DSGP771 Build/32.2.A.0.253", // Sony Xperia Z4 Tablet
         "Linux; Android 5.1; LPT_200AR Build/LMY47I",
         "Linux; Android 5.1.1; HUAWEI M2-801L Build/HUAWEIM2-801L",
@@ -64,7 +64,7 @@ export class UserAgent {
         "Linux; Android 6.0; BTV-DL09 Build/HUAWEIBEETHOVEN-DL09"
     ];
 
-    private _chromes:String[] = [
+    private _chromes: String[] = [
         "Chrome/85.0.4183.81",
         "Chrome/84.0.4147.89",
         "Chrome/83.0.4103.106",
@@ -96,8 +96,8 @@ export class UserAgent {
         let mac = settings.getSync("macAddress");
         let seed = 0, i, chr;
         for (i = 0; i < mac.length; i++) {
-            chr   = mac.charCodeAt(i);
-            seed  = ((seed << 5) - seed) + chr;
+            chr = mac.charCodeAt(i);
+            seed = ((seed << 5) - seed) + chr;
             seed |= 0; // Convert to 32bit integer
         }
         seed = Math.abs(seed);
